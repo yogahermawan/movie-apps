@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Trending from "./pages/Trending";
 import Movies from "./pages/Movies";
+import DetailMovies from "./pages/DetailMovie";
 import Search from "./pages/Search";
 import Error from "./pages/Error";
 
@@ -45,6 +46,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Trending handleFavourites={addFavouriteMovie} favourites={favourites} />} exact />
           <Route path="/movies" element={<Movies handleFavourites={addFavouriteMovie} favourites={favourites} />} exact />
+          <Route path="/movies/detail-movies/:id" element={<DetailMovies handleFavourites={addFavouriteMovie} favourites={favourites} />} exact />
           <Route path="/search" element={<Search handleFavourites={addFavouriteMovie} favourites={favourites} />} exact />
           <Route path="*" element={<Error />} />
         </Routes>

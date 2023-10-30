@@ -1,7 +1,7 @@
 import React from "react";
 import { img_300, unavailable } from "../components/config";
 import Pagination from "../components/Pagination";
-import { TrendingMovie, Paginate } from '../store/index';
+import { TrendingMovie, Paginate } from '../store';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import Card from '../components/Card';
 

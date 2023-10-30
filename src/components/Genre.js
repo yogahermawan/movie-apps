@@ -1,32 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useRecoilValue } from 'recoil';
+import { GenreData } from '../store';
 
-const Genre = ({ genre, setGenre, setPage, type, value, setValue }) => {
-  const fetchGenre = async () => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/genre/${type}/list?api_key=3d820eab8fd533d2fd7e1514e86292ea&language=en-US`
-    );
-    const { genres } = await data.json();
-    setGenre(genres);
-  };
+const Genre = ({ genre, setGenre, setPage, value, setValue }) => {
+  const { data } = useRecoilValue(GenreData);
+  setGenre(data.genres);
 
-  useEffect(() => {
-    fetchGenre();
-  }, []);
-
-  //Adding a particular genre to the selected array
-  const CategoryAdd = (genres) => {
-    //first - select everything that's inside of values using the spread operator
-    //second - add those genres that are being sent from the non-selected arrays
-    setValue([...value, genres]);
-    //removing those genres from the non selected array that have been added to the selected array.
-    setGenre(genre.filter((g) => g.id !== genres.id));
+  const CategoryAdd = (params) => {
+    // console.log(genre.filter((g) => g.id === params.id ? "true": "false"));
+    setValue([...value, params]);
+    setGenre(genre.filter((g) => g.id === params.id));
     setPage(1);
   };
 
-  //removing a perticular genre from the selected array
-  const CategoryRemove = (genres) => {
-    setValue(value.filter((g) => g.id !== genres.id));
-    setGenre([...genre, genres]);
+  const CategoryRemove = (params) => {
+    setValue(value.filter((g) => g.id !== params.id));
+    setGenre([...genre, params]);
     setPage(1);
   };
   return (
@@ -41,7 +30,7 @@ const Genre = ({ genre, setGenre, setPage, type, value, setValue }) => {
                   <>
                     <div className="m-2" key={id}>
                       <button
-                        className="text-white px-4 py-2 text-center btn btn-primary"
+                        className="text-white px-4 py-2 text-center buttons"
                         onClick={() => CategoryRemove(Val)}
                       >
                         {name}
