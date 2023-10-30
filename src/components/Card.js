@@ -18,7 +18,7 @@ const Card = (props) => {
                 className="col-md-3 col-sm-4 py-3 d-flex justify-content-center g-4"
                 id="card"
             >
-                <NavLink to={`detail-movies/${id}`}>
+                <NavLink to={`/movies/detail-movies/${id}`}>
                     <div className="card bg-dark">
                         <img
                             src={
