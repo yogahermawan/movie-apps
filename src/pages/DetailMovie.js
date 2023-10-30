@@ -47,27 +47,25 @@ const DetailMovies = (props) => {
                     <div className="col-md-4 pt-4">
                         <h3>{detail.title}</h3>
                         <p>{detail.release_date}</p>
-                        <button className="w-100 btn btn-secondary d-flex justify-content-evenly align-items-center">
-                            <Favourite favourites={props.favourites} fill='red' className="mr-2" />
-                            Add Favourite
-                        </button>
-                        {detail.genres &&
-                            detail.genres.map((Gen) => {
-                                const { id, name } = Gen;
-                                return (
-                                    <>
-                                        <div className="m-2" key={id}>
-                                            <span
-                                                className="text-white px-3 py-2 text-center rounded-5"
-                                                style={{ background: '#535353', fontSize: '12px' }}
-                                            >
-                                                {name}
-                                            </span>
-                                        </div>
-                                    </>
-                                );
-                            })
-                        }
+                        <div className="d-flex align-items-center mt-3">
+                            {detail.genres &&
+                                detail.genres.map((Gen) => {
+                                    const { id, name } = Gen;
+                                    return (
+                                        <>
+                                            <div className="m-1" key={id}>
+                                                <span
+                                                    className="text-white px-3 py-2 text-center rounded-5"
+                                                    style={{ background: '#535353', fontSize: '12px' }}
+                                                >
+                                                    {name}
+                                                </span>
+                                            </div>
+                                        </>
+                                    );
+                                })
+                            }
+                        </div>
                         <hr />
                         <p>{detail.overview}</p>
                         <div className="d-flex align-items-center gap-2">
